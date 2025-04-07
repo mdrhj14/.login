@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Loading...</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      color: #5f6368;
+    }
+
+    /* Top loading bar */
+    .loading-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background-color: #1a73e8;
+      width: 0%;
+      transition: width 0.4s ease;
+      z-index: 9999;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 100px auto;
+      padding: 0 20px;
+      display: none;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: normal;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 14px;
+      margin-top: 0;
+    }
+
+    code {
+      background: #f1f3f4;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="loading-bar" id="bar"></div>
+
+  <div class="container" id="content">
+    <h1>404. That’s an error.</h1>
+    <p>The requested URL <code>/your-page</code> was not found on this server.</p>
+    <p>That’s all we know.</p>
+  </div>
+
+  <script>
+    const bar = document.getElementById('bar');
+    let progress = 0;
+
+    const interval = setInterval(() => {
+      // زيادة عشوائية صغيرة بين 0.1% و 3%
+      const randomIncrease = Math.random() * 3 + 0.1;
+      progress += randomIncrease;
+
+      if (progress >= 20) {  // التوقف عند 30%
+        progress = 20;
+        clearInterval(interval);  // إيقاف التقدم
+        document.getElementById('content').style.display = 'block';  // إظهار رسالة الخطأ
+        bar.style.display = 'none';  // إخفاء الشريط
+      }
+
+      bar.style.width = progress + '%';  // تحديث عرض الشريط
+    }, 500);  // التقدم يحدث كل 100 ميلي ثانية
+  </script>
+
+</body>
+</html>

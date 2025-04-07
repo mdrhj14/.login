@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f0f2f5;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.heading-section {
+    display: flex;
+    flex-direction: column;
+    max-width: 550px;
+    margin: 0;
+    text-align: center;
+}
+
+.logo-img {
+    width: 100%;
+    max-width: 270px;
+    margin: 0 auto;
+}
+
+.a-ri8 {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+
+.form {
+    width: 100%;
+    max-width: 390px;
+}
+
+.a-form {
+    width: 100%;
+    padding: 15px;
+    background-color: #fff;
+    border: none;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.a-form .a-email,
+.a-form .a-pss {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    margin: 10px 0;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+}
+
+.a-form .a-email:focus,
+.a-form .a-pss:focus {
+    outline: none;
+    box-shadow: 0px 0px 2px #0066ff;
+}
+
+.a-form .a-sub {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    background-color: #004790;
+    color: white;
+    font-size: 20px;
+    border: none;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.a-form .a-sub:hover {
+    background-color: #003780;
+}
+
+.a-form .a-sub:active {
+    background-color: #102770;
+}
+
+.a-form .a-link {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #385898;
+}
+
+.a-form .a-hr {
+    margin: 1em 0;
+    border: 1px solid #E0E0E0;
+}
+
+.a-form .a-but {
+    width: 60%;
+    background-color: #32CD32;
+    padding: 14px;
+    margin: 10px auto;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: block;
+}
+
+.a-form .a-but:hover {
+    background-color: #67ab04;
+}
+
+.create-page {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 1rem;
+}
+
+.a-href {
+    text-decoration: none;
+    font-weight: 700;
+    color: black;
+}
+
+.a-href:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    width: 100%;
+    background: #fff;
+    padding: 1rem 0;
+}
+
+#pageFooter {
+    max-width: 968px;
+    color: #737373;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+ul {
+    line-height: 1.6;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+ul li {
+    padding: 0 10px;
+    font-size: 12px;
+    list-style-type: none;
+}
+
+a {
+    color: #385898;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#line {
+    border-bottom: 1px solid #dddfe2;
+    margin: 8px 0;
+}
+
+.copyright {
+    font-size: 12px;
+    text-align: center;
+    padding-top: 1rem;
+}
+
+.m-footer {
+    display: none;
+}
+
+/* Media Queries */
+@media screen and (max-width: 900px) {
+    .main {
+        flex-direction: column;
+        padding: 2rem 1rem;
+    }
+    
+    .heading-section {
+        margin-bottom: 2rem;
+        align-items: center;
+    }
+    
+    .a-ri8 {
+        font-size: 1.25rem;
+    }
+    
+    .form {
+        margin-bottom: 2rem;
+    }
+    
+    .a-form .a-but {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    main {
+        padding: 1rem;
+    }
+    
+    .a-ri8 {
+        font-size: 1.1rem;
+    }
+    
+    .a-form .a-sub {
+        font-size: 18px;
+    }
+    
+    .a-form .a-but {
+        width: 100%;
+    }
+    
+    .footer {
+        display: none;
+    }
+    
+    .m-footer {
+        display: block;
+        background: #fff;
+        padding: 1rem;
+        text-align: center;
+    }
+    
+    .main-c {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        font-size: 12px;
+    }
+    
+    .list-1, .list-2 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+    
+    .main-links {
+        color: #737373;
+        font-size: 10px;
+        margin-top: 1rem;
+    }
+    
+    .fb {
+        font-size: 12px;
+        margin-top: 1rem;
+        color: #737373;
+    }
+}
